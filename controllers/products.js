@@ -1,9 +1,9 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const api = new WooCommerceRestApi({
-    url: "http://api.sicvolo.com",
-    consumerKey: "ck_5b5e9bd41bcbbe005563695989d776f6a1550e36",
-    consumerSecret: "cs_b0cdb6991f842ca70ba08c3da7ba80df5e8d79b7",
+    url: "https://api.sicvolo.org",
+    consumerKey: "ck_5d8ae33b78434a96e7e4cc80fd7d581fd92ad9ac",
+    consumerSecret: "cs_5d06d0037e6cf9c452d36cd7942c8d0971494261",
     version: "wc/v3"
   });
 

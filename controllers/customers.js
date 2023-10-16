@@ -3,14 +3,14 @@ const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 const WPAPI = require( 'wpapi' );
 
 var wp = new WPAPI({
-    endpoint: 'https://api.sicvolo.com/wp-json',
+    endpoint: 'https://api.sicvolo.org/wp-json',
     // This assumes you are using basic auth, as described further below
     username: 'sicvoloApi2023',
     password: '4iQg kSPx jxV2 SlfA Z9mw V09S'
 });
 
 const api = new WooCommerceRestApi({
-    url: "http://api.sicvolo.com",
+    url: "http://api.sicvolo.org",
     consumerKey: "ck_5b5e9bd41bcbbe005563695989d776f6a1550e36",
     consumerSecret: "cs_b0cdb6991f842ca70ba08c3da7ba80df5e8d79b7",
     version: "wc/v3"
