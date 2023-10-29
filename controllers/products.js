@@ -8,9 +8,30 @@ const api = new WooCommerceRestApi({
   });
 
 const getProducts = async (req, res) => {
- // List products
-await api.get("products", {
+  await api.get("products", {
     per_page: 20, // 20 products per page
+  })
+    .then((response) => {
+      console.log("Response Data:", response.data);
+      res.json( response.data );
+    })
+    .catch((error) => {
+      // Invalid request, for 4xx and 5xx statuses
+      console.log("Response Status:", error.response.status);
+      console.log("Response Headers:", error.response.headers);
+      console.log("Response Data:", error.response.data);
+    })
+    .finally(() => {
+      // Always executed.
+    });
+
+   
+  }; 
+
+const getFeatureProducts = async (req, res) => {
+  await api.get("products", {
+    per_page: 20,
+    featured: true, // 20 products per page
   })
     .then((response) => {
       console.log("Response Data:", response.data);
@@ -51,19 +72,9 @@ await api.get("products/" + id, {
   }; 
 
 
-// const setTree = async (req, res) => {
-//   try {
-//     const { id, tree } = req.body;
-
-    
-//     // const options = await Options.findOneAndUpdate({ _id: id }, { tree }, { new: true });
-//     res.json({ options });
-//   } catch (e) {
-//     res.json({ message: "Not denie" });
-//   }
-// };
 
 module.exports = {
     getProducts,
-    getProductById
+    getProductById,
+    getFeatureProducts
 };

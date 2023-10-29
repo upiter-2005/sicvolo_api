@@ -6,6 +6,8 @@ const fileUpload = require("express-fileupload");
 
 const productsRoutes = require("./routs/productsRoutes.js");
 const customersRoutes = require("./routs/customersRoutes.js");
+const orderRoutes = require("./routs/orderRoutes.js");
+const paymentRoutes = require("./routs/paymentRoutes.js");
 
 const app = express();
 dotenv.config();
@@ -19,6 +21,8 @@ app.use(express.static("uploads"));
 
 app.use("/api/products", productsRoutes);
 app.use("/api/customers", customersRoutes);
+app.use("/api/order", orderRoutes);
+app.use("/api/payment", paymentRoutes);
 
 const PORT = 5000;
 

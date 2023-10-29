@@ -4,7 +4,6 @@ const WPAPI = require( 'wpapi' );
 
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
-    // This assumes you are using basic auth, as described further below
     username: 'sicvoloApi2023',
     password: '4iQg kSPx jxV2 SlfA Z9mw V09S'
 });
@@ -37,6 +36,24 @@ await api.get("customers")
 
 
   const registerCustomer = async (req, res) => {
+    const { username, email, password} = req.body;
+
+    wp.users().create({
+        username,
+        email,
+        roles: 'customer',
+        password
+    }).then(function( response ) {
+        // "response" will hold all properties of your newly-created post,
+        // including the unique `id` the post was assigned on creation
+        console.log( response.id  );
+        res.json({ response });
+    }).catch(function( err ) {
+        res.json({err})
+    });
+   
+  };  
+  const getAllUsers = async (req, res) => {
     const { username, email, password} = req.body;
 
     wp.users().create({
