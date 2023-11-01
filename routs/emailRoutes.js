@@ -1,9 +1,8 @@
 const { Router } = require("express");
-const { recoverPassword } = require("../controllers/email.js");
-const checkAuth = require("../utils/checkAuth.js");
+const { sendMail } = require("../controllers/email.js");
+
 
 const router = Router();
-// /api/options/getTree
-router.post("/recoverPassword", checkAuth, recoverPassword);
+router.post("/sendMail", sendMail);
 
 module.exports = router;
