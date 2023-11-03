@@ -1,7 +1,6 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WPAPI = require( 'wpapi' );
-
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
     username: 'sicvoloApi2023',
