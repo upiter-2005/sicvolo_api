@@ -1,7 +1,6 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WPAPI = require( 'wpapi' );
-const axios = require('axios');
 
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
