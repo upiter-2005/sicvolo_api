@@ -1,6 +1,8 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WPAPI = require( 'wpapi' );
+const axios = require('axios');
+
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
     username: 'sicvoloApi2023',
@@ -73,22 +75,11 @@ await api.get("customers")
 
 
   const sendCodeToEmail = async(req, res) => {
-    
     const {email} = req.body;
       try {
-        const data = await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password`, { 
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },    
-        body: JSON.stringify({email: email}) 
-      })
-      .then(resp => resp.json())
-      .then(resp => {
-        console.log(resp)
-        res.json({ resp });
-      });
-       
+        const { data } = await axios.post(`https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password`, { email });
+        // return { data };
+        res.json({ data });
       } catch (error) {
         console.log({ error })
         return { error: 'Invalid email!' }
@@ -99,19 +90,7 @@ await api.get("customers")
   const resetCustomerPasswordWithCode = async(req, res) =>  {
     const { email, code, newPassword } = req.body;
     try {
-      const { data } = await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/set-password`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },    
-        body: JSON.stringify({email, password: newPassword, code}) 
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-          console.log(resp)
-          res.json({ resp });
-        });
-        ;
+      const { data } = await axios.post(`https://api.sicvolo.org/wp-json/bdpwr/v1/set-password`, { email, password: newPassword, code });
       res.json({ data });
     } catch (error) {
       console.log({ error })
