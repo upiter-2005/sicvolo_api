@@ -53,31 +53,9 @@ const login = async (req, res) => {
   }
 };
 
-const getMe = async (req, res) => {
-  try {
-    const user = await User.findById(req.userId);
-    if (!user) {
-      return res.json({ message: "User does not exist" });
-    }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
-    res.json({ user, token, message: "You have been auth" });
-  } catch (error) {
-    res.json({ message: "Access is denied" });
-  }
-};
 
-const checkUpliner = async (req, res) => {
-  try {
-    const { login } = req.body;
-    const isUserExist = await User.findOne({ login });
-    if (!isUserExist) {
-      return res.json({ message: "not such user" });
-    }
-    res.json(isUserExist);
-  } catch (e) {
-    res.json({ message: "not connect" });
-  }
-};
+
+
 module.exports = {
   getMe,
   login,

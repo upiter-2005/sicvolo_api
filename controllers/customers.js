@@ -1,6 +1,7 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WPAPI = require( 'wpapi' );
+const axios = require('axios');
 
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
@@ -73,8 +74,35 @@ await api.get("customers")
   };  
 
 
+  const sendCodeToEmail = async(req, res) => {
+    const {email} = req.body;
+      try {
+        const { data } = await axios.post(`https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password`, { email });
+        // return { data };
+        res.json({ data });
+      } catch (error) {
+        console.log({ error })
+        return { error: 'Invalid email!' }
+      }
+    
+  }
+
+  const resetCustomerPasswordWithCode = async(req, res) =>  {
+    const { email, code, newPassword } = req.body;
+    try {
+      const { data } = await axios.post(`https://api.sicvolo.org/wp-json/bdpwr/v1/set-password`, { email, password: newPassword, code });
+      res.json({ data });
+    } catch (error) {
+      console.log({ error })
+      res.json({ error });
+      return { error: 'Something went wrong...' }
+    }
+  }
+
 
 module.exports = {
     getCustomers,
-    registerCustomer
+    registerCustomer,
+    sendCodeToEmail,
+    resetCustomerPasswordWithCode
 };
