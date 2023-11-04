@@ -1,5 +1,5 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
-
+const awaitRequest = require('async-request');
 const WPAPI = require( 'wpapi' );
 var wp = new WPAPI({
     endpoint: 'https://api.sicvolo.org/wp-json',
@@ -76,18 +76,29 @@ await api.get("customers")
     
     const {email} = req.body;
       try {
-         await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password`, { 
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },    
-        body: JSON.stringify({email: email}) 
-      })
-      .then(resp => resp.json())
-      .then(resp => {
-        console.log(resp)
-        res.json({ resp });
-      });
+
+        let data = await awaitRequest("https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password", { 
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },    
+          data: {email: email}
+        })
+        data = JSON.parse(data.body);
+        console.log(data);
+        res.json({ data })
+      //    await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/reset-password`, { 
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },    
+      //   body: JSON.stringify({email: email}) 
+      // })
+      // .then(resp => resp.json())
+      // .then(resp => {
+      //   console.log(resp)
+      //   res.json({ resp });
+      // });
        
       } catch (error) {
         console.log({ error })
@@ -98,21 +109,37 @@ await api.get("customers")
 
   const resetCustomerPasswordWithCode = async(req, res) =>  {
     const { email, code, newPassword } = req.body;
+
     try {
-      const { data } = await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/set-password`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },    
-        body: JSON.stringify({email, password: newPassword, code}) 
+
+
+      let data = await awaitRequest("https://api.sicvolo.org/wp-json/bdpwr/v1/set-password", { 
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },    
+          data: {email, password: newPassword, code}
         })
-        .then(resp => resp.json())
-        .then(resp => {
-          console.log(resp)
-          res.json({ resp });
-        });
-        ;
-      res.json({ data });
+        data = JSON.parse(data.body);
+        console.log(data);
+        res.json({ data })
+
+
+
+      // const { data } = await fetch(`https://api.sicvolo.org/wp-json/bdpwr/v1/set-password`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },    
+      //   body: JSON.stringify({email, password: newPassword, code}) 
+      //   })
+      //   .then(resp => resp.json())
+      //   .then(resp => {
+      //     console.log(resp)
+      //     res.json({ resp });
+      //   });
+      //   ;
+      // res.json({ data });
     } catch (error) {
       console.log({ error })
       res.json({ error });
