@@ -30,7 +30,7 @@ const getProducts = async (req, res) => {
 
 const getFeatureProducts = async (req, res) => {
   await api.get("products", {
-    per_page: -1,
+    per_page: 20,
     featured: true, // 20 products per page 
   })
     .then((response) => {
