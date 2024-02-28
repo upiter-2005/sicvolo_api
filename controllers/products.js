@@ -9,7 +9,9 @@ const api = new WooCommerceRestApi({
 
 const getProducts = async (req, res) => {
   await api.get("products", {
-    per_page: 100, // 20 products per page
+    per_page: 100,
+    orderby: 'menu_order',
+    //lang: "en" // 20 products per page
   })
     .then((response) => {
       console.log("Response Data:", response.data);
