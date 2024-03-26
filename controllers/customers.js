@@ -150,7 +150,7 @@ await api.get("customers")
 
   const getCurrency = async (req, res) => {
     try{
-       await fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+       await fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',{mode: 'no-cors'})
       
       .then(response => response.json(response))
       .then(response =>{
