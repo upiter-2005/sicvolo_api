@@ -148,9 +148,25 @@ await api.get("customers")
   }
 
 
+  const getCurrency = async (req, res) => {
+    try{
+       fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+      
+      .then(response => response.json(response))
+      .then(response => res.json(response))
+     
+    }catch(e){
+      console.log( e )
+      res.json({ message: "Ошибка связи!" });
+    }
+   
+  }
+
+
 module.exports = {
     getCustomers,
     registerCustomer,
     sendCodeToEmail,
-    resetCustomerPasswordWithCode
+    resetCustomerPasswordWithCode,
+    getCurrency
 };
