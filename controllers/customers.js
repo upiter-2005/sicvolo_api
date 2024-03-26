@@ -160,7 +160,7 @@ await api.get("customers")
      
     }catch(e){
       console.log( e )
-      res.json({ message: "Ошибка связи!" });
+      res.json( e );
     }
    
   }
