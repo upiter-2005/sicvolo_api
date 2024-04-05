@@ -1,6 +1,3 @@
-// var LiqPay = require('liqpay');
-//
-
 const LiqPay = require('../libs/liqpay'); // Adjust the path to your LiqPay class file
 const crypto = require('crypto');
 
@@ -14,7 +11,7 @@ const doPayment = async (req, res) => {
     var html = liqpay.cnb_form({
         'action'         : 'pay',
         'amount'         : amount,
-        'currency'       : 'USD',
+        'currency'       : 'UAH',
         'description'    : description,
         'order_id'       : 'order_id_1',
         'version'        : '3',
