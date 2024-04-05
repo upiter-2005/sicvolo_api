@@ -18,6 +18,7 @@ const getProducts = async (req, res) => {
       res.json( response.data );
     })
     .catch((error) => {
+      res.json(error)
       // Invalid request, for 4xx and 5xx statuses
       console.log("Response Status:", error.response.status);
       console.log("Response Headers:", error.response.headers);
