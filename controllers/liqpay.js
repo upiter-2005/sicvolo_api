@@ -25,28 +25,6 @@ const doPayment = async (req, res) => {
         res.json(html); 
 }
 
-// const getProductById = async (req, res) => {
-//     const { id } = req.body;
-// await api.get("products/" + id, {
-//     per_page: 1, 
-//   })
-//     .then((response) => {
-//       console.log("Response Data:", response.data);
-//       res.json( response.data );
-//     })
-//     .catch((error) => {
-//       // Invalid request, for 4xx and 5xx statuses
-//       console.log("Response Status:", error.response.status);
-//       console.log("Response Headers:", error.response.headers);
-//       console.log("Response Data:", error.response.data);
-//     })
-//     .finally(() => {
-//       // Always executed.
-//     });
-
-   
-//   }; 
-
 
 
 module.exports = {
