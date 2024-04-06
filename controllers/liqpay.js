@@ -15,16 +15,11 @@ const doPayment = async (req, res) => {
         'description'    : description,
         'order_id'       : 'order_id_1',
         'version'        : '3',
-        
         });
-
 
         res.json(html); 
 }
 
-
-
 module.exports = {
-    doPayment
-    
+    doPayment 
 };
