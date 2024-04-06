@@ -1,4 +1,4 @@
-const LiqPay = require('../libs/liqpay'); // Adjust the path to your LiqPay class file
+const LiqPay = require('../lib/liqpay'); // Adjust the path to your LiqPay class file
 const crypto = require('crypto');
 
 var liqpay = new LiqPay('i44810903824', 'F0qSdzxgmC9EUGOCavHmSSa39XKOoi7DOopzddPX');
