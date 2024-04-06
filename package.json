@@ -8,7 +8,9 @@
     "dev": "nodemon index.js"
   },
   "jest": {
-    "collectCoverage":true
+    "collectCoverage":true,
+    "preset": "@vue/cli-plugin-unit-jest",
+    "transformIgnorePatterns": ["node_modules\/(?!axios)"]
   },
   "keywords": [
     "react",
