@@ -15,7 +15,7 @@
   "dependencies": {
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "async-request": "^1.2.0",
-    "axios": "^1.6.8",
+   
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
